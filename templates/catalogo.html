@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Catálogo de Perfumes{% endblock %}
+{% block content %}
+<div class="catalogo">
+    {% for p in perfumes %}
+    <div class="perfume">
+        <img src="{{ url_for('static', filename=p.img) }}" alt="{{ p.nombre }}" width="150">
+        <h3>{{ p.nombre }}</h3>
+        <p class="marca">{{ p.marca }}</p>
+        <p class="precio">$ {{ p.precio }} COP</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

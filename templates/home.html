@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Inicio - Perfumería{% endblock %}
+{% block content %}
+<h2>Bienvenido, {{ usuario }}</h2>
+<p>Estos son los perfumes registrados:</p>
+
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Marca</th>
+        <th>Precio</th>
+        <th>Descripción</th>
+        <th>Acción</th>
+    </tr>
+    {% for perfume in perfumes %}
+    <tr>
+        <td>{{ perfume["nombre"] }}</td>
+        <td>{{ perfume["marca"] }}</td>
+        <td>${{ "%.2f"|format(perfume["precio"]) }}</td>
+        <td>{{ perfume["descripcion"] }}</td>
+        <td><a class="btn" href="{{ url_for('eliminar', id=perfume['id']) }}">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

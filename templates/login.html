@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Perfumería</title>
+    <style>
+        body { font-family: Arial; background-color: #f0f0f0;
+               display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .login { background: white; padding: 30px; border-radius: 10px;
+                 box-shadow: 0 0 10px #aaa; width: 300px; text-align: center; }
+        input, button { width: 90%; padding: 10px; margin: 10px 0;
+                        border-radius: 5px; border: 1px solid #ccc; }
+        button { background-color: #200242; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #28232e; }
+        .error { color: red; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <h2>Iniciar Sesión</h2>
+        <form method="post">
+            <input type="text" name="usuario" placeholder="Usuario" required>
+            <input type="password" name="clave" placeholder="Contraseña" required>
+            <button type="submit">Ingresar</button>
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

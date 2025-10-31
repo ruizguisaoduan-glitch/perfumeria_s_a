@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Perfumería AromaLux{% endblock %}</title>
+    <style>
+        body { font-family: Arial; background-color: #f3f3eb; margin: 0; }
+        header { background: #19191a; color: rgb(199, 192, 100); padding: 20px; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; }
+        nav a:hover { color: gold; }
+        main { padding: 20px; }
+        footer { text-align: center; background: #eee; padding: 10px; margin-top: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
+        button, a.btn {
+            background: #b97cff; color: white; padding: 8px 15px; border: none;
+            border-radius: 5px; text-decoration: none; cursor: pointer;
+        }
+        button:hover, a.btn:hover { background: #9e65e6; }
+        .flash { width: 80%; margin: 10px auto; padding: 10px; border-radius: 5px; text-align: center; }
+        .success { background-color: #c9f7c9; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Perfumería AromaLux</h1>
+    <nav>
+        <a href="{{ url_for('home', usuario='admin') }}">Inicio</a>
+        <a href="{{ url_for('catalogo') }}">Catálogo</a>
+        <a href="{{ url_for('agregar') }}">Agregar Perfume</a>
+        <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+    </nav>
+</header>
+
+{% with mensajes = get_flashed_messages(with_categories=true) %}
+  {% if mensajes %}
+    {% for categoria, mensaje in mensajes %}
+      <div class="flash {{ categoria }}">{{ mensaje }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    © 2025 Perfumería AromaLux - Todos los derechos reservados
+</footer>
+</body>
+</html>
